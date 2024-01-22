@@ -4,13 +4,15 @@ declare(strict_types=1);
 
 namespace Src\Context\Site\Application;
 
-use Src\Context\Site\Domain\Contracts\SiteContract;
+use Src\Context\Site\Domain\Contracts\SiteRepositoryContract;
+use Src\Context\Site\Domain\Site;
+use Src\Context\Site\Domain\ValueObjects\SiteUrl;
 
-final class SearchGamesUseCase
+final class CreateShortUrlUseCase
 {
     private $repository;
 
-    public function __construct(SiteContract $repository)
+    public function __construct(SiteRepositoryContract $repository)
     {
         $this->repository = $repository;
     }

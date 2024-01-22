@@ -3,6 +3,7 @@
 namespace Tests\Unit\Context\UrlSite;
 
 use PHPUnit\Framework\TestCase;
+use Src\Context\Site\Application\CreateShortUrlUseCase;
 
 class CreateShortUrlUseCaseTest extends TestCase
 {
@@ -14,6 +15,6 @@ class CreateShortUrlUseCaseTest extends TestCase
         $url = 'http://www.example.com';
         $createShortUrlUseCase = new CreateShortUrlUseCase(new TinyUrlApiRepository());
         $urlSite = $createShortUrlUseCase->__invoke($url);
-        $this->assertTrue(true, $urlSite->shortUrl->value());
+        $this->assertTrue(true, $urlSite->shortUrl()->value());
     }
 }
