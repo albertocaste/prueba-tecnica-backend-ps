@@ -4,6 +4,7 @@ namespace Tests\Unit\Context\UrlSite;
 
 use PHPUnit\Framework\TestCase;
 use Src\Context\Site\Application\CreateShortUrlUseCase;
+use Src\Context\Site\Infrastructure\Repositories\TinyUrlApiRepository;
 
 class CreateShortUrlUseCaseTest extends TestCase
 {

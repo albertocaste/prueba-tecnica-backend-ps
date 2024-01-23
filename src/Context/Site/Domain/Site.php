@@ -27,9 +27,14 @@ final class Site
         return $this->url;
     }
 
-    public function shortUrl(): SiteShortUrl
+    public function shortUrl(): ?SiteShortUrl
     {
         return $this->shortUrl;
+    }
+
+    public function updateShortUrl(SiteShortUrl $shortUrl): void
+    {
+        $this->shortUrl = $shortUrl;
     }
 
 }
