@@ -2,8 +2,7 @@
 
 namespace Tests\Feature\Context\Site;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
 
 class CreateShortUrlTest extends TestCase
@@ -20,8 +19,8 @@ class CreateShortUrlTest extends TestCase
         ]);
         $response
             ->assertStatus(200)
-            ->assertJson([
-            'url' => 'shortUrl'
-        ]);
+            ->assertJson(fn (AssertableJson $json) =>
+            $json->whereType('url', 'string')
+        );
     }
 }
