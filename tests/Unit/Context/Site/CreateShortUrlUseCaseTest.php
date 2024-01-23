@@ -9,7 +9,9 @@ use Src\Context\Site\Infrastructure\Repositories\TinyUrlApiRepository;
 class CreateShortUrlUseCaseTest extends TestCase
 {
     /**
-     * A basic unit test example.
+     * Test short url creation
+     * 
+     * @return void
      */
     public function test_create_short_url_by_url(): void
     {

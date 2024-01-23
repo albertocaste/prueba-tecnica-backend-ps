@@ -9,5 +9,5 @@ use Src\Context\Site\Domain\Site;
 interface SiteRepositoryContract
 {
     public function check(): void;
-    public function createShortUrl(?Site $site): ?Site;
+    public function createShortUrl(Site $site): Site;
 }

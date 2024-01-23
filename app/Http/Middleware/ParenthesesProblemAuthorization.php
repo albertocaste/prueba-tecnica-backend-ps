@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class ParenthesisProblemAuthorization
+class ParenthesesProblemAuthorization
 {
     /**
      * Handle an incoming request.
@@ -16,49 +16,46 @@ class ParenthesisProblemAuthorization
     public function handle(Request $request, Closure $next): Response
     {
         $token = $request->bearerToken();
-        $pass = false;
-        if (is_null($token)) {
-            $pass = true;
-        } else {
-            $pass = $this->areBracketsBalanced($token);
-        }
-        return $pass ? $next($request) : response()->json('Authorization Bearer token invalid', 403);
+        $nextRequest = is_null($token) ? true : $this->areBracketsBalanced($token);
+        return $nextRequest ? $next($request) : response()->json('Authorization Bearer token invalid', 403);
     }
 
-
-    public function areBracketsBalanced(string $token) {
-        $stack = [];
+    /**
+     * Check if brackets are correct balanced
+     * 
+     * @param string $token Bearer token
+     * @return bool
+     */
+    public function areBracketsBalanced(string $token) : bool
+    {
+		$stack = [];
         for ($i=0; $i < strlen($token); $i++) {
             $x = $token[$i];
-            if ($x == '(' || $x == '[' || $x == '{') {
+            if (in_array($x, ['(', '[', '{'])) {
                 $stack[] = $x;
                 continue;
             }
-            if (empty($stack)) {
+            if (empty($stack)|| !in_array($x, ['(', '[', '{', '}',']',')'])) {
                 return false;
             }
-            $check = [];
             switch ($x) {
                 case ')':
-                    $check = array_pop($stack);
-                    if ($check == '{' || $check == '[') {
+                    if (in_array(array_pop($stack), ['{', '['])) {
                         return false;
                     }
                     break;
                 case '}':
-                    $check = array_pop($stack);
-                    if ($check == '(' || $check == '[') {
+                    if (in_array(array_pop($stack), ['(', '['])) {
                         return false;
                     }
                     break;
                 case ']':
-                    $check = array_pop($stack);
-                    if ($check == '(' || $check == '{') {
+                    if (in_array(array_pop($stack), ['(', '{'])) {
                         return false;
                     }
                     break;
             }
         }
         return empty($stack);
-    }
+	}
 }

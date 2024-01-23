@@ -8,7 +8,9 @@ use Tests\TestCase;
 class CreateShortUrlTest extends TestCase
 {
     /**
-     * A basic feature test example.
+     * Test short url creation end to end
+     *
+     * @return void
      */
     public function test_create_short_url_e2e(): void
     {

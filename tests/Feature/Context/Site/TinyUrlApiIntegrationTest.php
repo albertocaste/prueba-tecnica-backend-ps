@@ -8,7 +8,9 @@ use Tests\TestCase;
 class TinyUrlApiIntegrationTest extends TestCase
 {
     /**
-     * A basic feature test example.
+     * Test tiny url api integration
+     *
+     * @return void
      */
     public function test_check_tiny_api_url_integration(): void
     {

@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Api\Site\CreateShortUrlController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,6 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('parenthesis')->prefix('v1')->group(function() {
+Route::prefix('v1')->group(function() {
     Route::post('short-urls', CreateShortUrlController::class);
 });

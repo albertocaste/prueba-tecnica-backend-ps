@@ -14,6 +14,12 @@ final class TinyUrlApiRepository implements SiteRepositoryContract
     private string $BASE_URL = 'https://tinyurl.com/';
     private $client;
 
+    /**
+     * Instance client
+     *
+     * @param Site $site
+     * @return Site
+     */
     public function __construct()
     {
         $this->client = Http::withOptions([
@@ -21,13 +27,24 @@ final class TinyUrlApiRepository implements SiteRepositoryContract
         ]);
     }
 
+    /**
+     * Check tiny url API
+     *
+     * @return void
+     */
     public function check(): void
     {
         $response = $this->client->get($this->BASE_URL);
         $response->throw();
     }
 
-    public function createShortUrl(?Site $site): ?Site
+    /**
+     * Create short url by tiny url API
+     *
+     * @param Site $site
+     * @return Site
+     */
+    public function createShortUrl(Site $site): Site
     {
         $response = $this->client->get($this->BASE_URL. 'api-create.php', [
             'url' => $site->url()->value()

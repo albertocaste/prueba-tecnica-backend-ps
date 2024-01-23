@@ -12,25 +12,30 @@ use Src\Context\Site\Infrastructure\Controllers\CreateShortUrlController as HACr
 class CreateShortUrlController extends Controller
 {
     /**
-     * @var \Src\Context\Site\Infrastructure\CreateShortUrlController
+     * @var CreateShortUrlController
      */
     private $createShortUrlController;
 
+    /**
+     * Construct
+     *
+     * @param HACreateShortUrlController $createShortUrlController
+     */
     public function __construct(HACreateShortUrlController $createShortUrlController)
     {
         $this->createShortUrlController = $createShortUrlController;
     }
 
     /**
-     * Handle the incoming request.
+     * Handle the incoming request
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function __invoke(Request $request) : JsonResponse
     {
         $validator = Validator::make($request->all(), [
-            'url' => 'required|string|max:255'
+            'url' => 'required|url:http,https|string|max:255'
         ]);
         if ($validator->fails()) {
             return response()->json($validator->messages(), 400);

@@ -29,12 +29,4 @@ class Handler extends ExceptionHandler
             //
         });
     }
-
-    public function render($request, Throwable $e) {
-        Log::error($e);
-        if ($request->is('api*')) {
-            return response()->json(['message' => $e->getMessage()], $e->getCode());
-        }
-        return parent::render($request, $e);
-    }
 }

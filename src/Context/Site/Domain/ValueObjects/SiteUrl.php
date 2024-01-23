@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Src\Context\Site\Domain\ValueObjects;
 
-
 final class SiteUrl
 {
     private $value;

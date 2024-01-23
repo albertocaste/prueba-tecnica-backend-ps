@@ -18,6 +18,12 @@ final class CreateShortUrlController
         $this->repository = $repository;
     }
 
+    /**
+     * Get Request and instance use case
+     *
+     * @param Request $request
+     * @return Site
+     */
     public function __invoke(Request $request): Site
     {
         $url = $request->input('url');

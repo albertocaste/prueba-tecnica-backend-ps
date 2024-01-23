@@ -30,6 +30,7 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->routes(function () {
             Route::middleware('api')
+                ->middleware('parenthesesProblem')
                 ->prefix('api')
                 ->group(base_path('routes/api.php'));
 

@@ -7,7 +7,7 @@ namespace Src\Context\Site\Domain\ValueObjects;
 
 final class SiteShortUrl
 {
-    private $value;
+    private ?string $value;
 
     public function __construct(string $value)
     {

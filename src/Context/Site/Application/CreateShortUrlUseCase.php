@@ -12,12 +12,23 @@ final class CreateShortUrlUseCase
 {
     private $repository;
 
+    /**
+     * Construct
+     *
+     * @param SiteRepositoryContract $repository
+     */
     public function __construct(SiteRepositoryContract $repository)
     {
         $this->repository = $repository;
     }
 
-    public function __invoke(string $url)
+    /**
+     * Handle the incoming request and instance method
+     *
+     * @param string $url
+     * @return Site
+     */
+    public function __invoke(string $url) : Site
     {
         $siteUrl = new SiteUrl($url);
         $site = new Site($siteUrl);
