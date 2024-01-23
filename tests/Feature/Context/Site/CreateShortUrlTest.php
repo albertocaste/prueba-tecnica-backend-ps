@@ -20,7 +20,7 @@ class CreateShortUrlTest extends TestCase
         $response
             ->assertStatus(200)
             ->assertJson(fn (AssertableJson $json) =>
-            $json->whereType('url', 'string')
+                $json->whereType('url', 'string')
         );
     }
 }

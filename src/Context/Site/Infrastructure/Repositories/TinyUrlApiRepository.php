@@ -12,21 +12,28 @@ use Illuminate\Support\Facades\Http;
 final class TinyUrlApiRepository implements SiteRepositoryContract
 {
     private string $BASE_URL = 'https://tinyurl.com/';
+    private $client;
 
     public function __construct()
     {
-
+        $this->client = Http::withOptions([
+            'verify' => false,
+        ]);
     }
 
     public function check(): void
     {
-        $response = Http::get('http://example.com');
+        $response = $this->client->get($this->BASE_URL);
         $response->throw();
     }
 
     public function createShortUrl(?Site $site): ?Site
     {
-        $siteShortUrl = new SiteShortUrl('shortUrl');
+        $response = $this->client->get($this->BASE_URL. 'api-create.php', [
+            'url' => $site->url()->value()
+        ]);
+        $response->throw();
+        $siteShortUrl = new SiteShortUrl($response->body());
         $site->updateShortUrl($siteShortUrl);
         return $site;
     }
