@@ -13,12 +13,15 @@ class CreateShortUrlTest extends TestCase
      */
     public function test_create_short_url_e2e(): void
     {
-        $response = $this->get('/api/v1/short-urls', [
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer []{}()',
+        ])->post('/api/v1/short-urls', [
             'url' => 'https://example.com'
         ]);
-
-        $response->assertJsonFragment([
-            'url' => 'http://tinyurl.com/ylx5uce'
-        ], 200);
+        $response
+            ->assertStatus(200)
+            ->assertJson([
+            'url' => 'shortUrl'
+        ]);
     }
 }
