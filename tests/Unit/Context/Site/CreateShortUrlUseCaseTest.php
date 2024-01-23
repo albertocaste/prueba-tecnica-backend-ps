@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\Unit\Context\UrlSite;
+namespace Tests\Unit\Context\Site;
 
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 use Src\Context\Site\Application\CreateShortUrlUseCase;
 use Src\Context\Site\Infrastructure\Repositories\TinyUrlApiRepository;
 

@@ -30,7 +30,7 @@ class CreateShortUrlController extends Controller
     public function __invoke(Request $request) : JsonResponse
     {
         $validator = Validator::make($request->all(), [
-            'url' => 'required|url:http,https|max:255'
+            'url' => 'required|string|max:255'
         ]);
         if ($validator->fails()) {
             return response()->json($validator->messages(), 400);
