@@ -15,6 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware(['api'])->prefix('v1')->group(function() {
+Route::middleware('parenthesis')->prefix('v1')->group(function() {
     Route::post('short-urls', CreateShortUrlController::class);
 });
